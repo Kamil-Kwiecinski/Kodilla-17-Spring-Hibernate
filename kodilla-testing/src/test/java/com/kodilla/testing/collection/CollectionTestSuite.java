@@ -18,13 +18,14 @@ public class CollectionTestSuite {
         //Given
         Integer list[]= new Integer[] {};
         List<Integer> emptyList = Arrays.asList(list);
-        Integer expectedList = 0;
+
+        OddNumbersExterminator oddNumbersExterminatorList = new OddNumbersExterminator(emptyList);
 
         //When
-        Integer result = emptyList.size();
+        List<Integer> testList = oddNumbersExterminatorList.exterminate(emptyList);
 
         //Then
-        Assertions.assertEquals(result ,expectedList);
+        Assertions.assertEquals(0 ,testList.size());
     }
 
 
@@ -44,16 +45,18 @@ public class CollectionTestSuite {
         //Given
         Integer list[]= new Integer[] {1, 2, 3, 4, 5};
         List<Integer> normalList = Arrays.asList(list);
+        Integer list2[]= new Integer[] {2, 4};
+        List<Integer> expectedList = Arrays.asList(list2);
 
-        Integer list2[]= new Integer[] {1, 2, 3, 4, 5};
-        List<Integer> expectedList = Arrays.asList(list);
+
+        OddNumbersExterminator oddNumbersExterminatorList = new OddNumbersExterminator(normalList);
+
         //When
-        for(int i = 0; i > normalList.size(); i++) {
-            Integer result = normalList.get(i);
-            Integer expectedResult = expectedList.get(i);
-            //Then
-            Assertions.assertEquals(result, expectedResult);
-        }
+        List<Integer> testList = oddNumbersExterminatorList.exterminate(normalList);
+
+        //Then
+        Assertions.assertEquals(2, testList.size());
+        Assertions.assertEquals(expectedList, testList);
     }
 
     @AfterEach
