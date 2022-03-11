@@ -2,7 +2,8 @@ package com.kodilla.testing.weather.mock;
 
 import com.kodilla.testing.weather.stub.Temperatures;
 import com.kodilla.testing.weather.stub.WeatherForecast;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,9 +18,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class WeatherForecastTestSuite {
 
-    @BeforeAll
-    public static void before() {
-        System.out.println("Tests are starting.");
+    @BeforeEach
+    public void beforeEach() {
+        System.out.println("Test is starting.");
+    }
+
+    @AfterEach
+    public void afterEach() {
+        System.out.println("Test is ended.");
     }
 
     @Mock
