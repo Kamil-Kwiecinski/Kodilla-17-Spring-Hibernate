@@ -18,6 +18,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class WeatherForecastTestSuite {
 
+    @Mock
+    private Temperatures temperaturesMock;
+    Map<String, Double> temperaturesMap = new HashMap<>();
+
     @BeforeEach
     public void beforeEach() {
         System.out.println("Test is starting.");
@@ -33,11 +37,6 @@ public class WeatherForecastTestSuite {
     public void afterEach() {
         System.out.println("Test is ended.");
     }
-
-    @Mock
-    private Temperatures temperaturesMock;
-    Map<String, Double> temperaturesMap = new HashMap<>();
-
 
     @Test
     void testCalculateForecastWithMock(){
