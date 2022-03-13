@@ -61,8 +61,8 @@ public class BookDirectoryTestSuite {
         //Given
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf0Books = new ArrayList<>();
-        List<Book> resultListOf15Books = new ArrayList<>(15);
-        List<Book> resultListOf40Books = new ArrayList<>(40);
+        List<Book> resultListOf15Books = generateListOfBooks(15);
+        List<Book> resultListOf40Books = generateListOfBooks(40);
         when(libraryDatabaseMock.listBooksWithCondition(anyString())).thenReturn(resultListOf15Books);
         when(libraryDatabaseMock.listBooksWithCondition("ZeroBooks")).thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksWithCondition("FortyBooks")).thenReturn(resultListOf40Books);
@@ -74,8 +74,8 @@ public class BookDirectoryTestSuite {
 
         //Then
         assertEquals(0, theListOfBooks0.size());
-        assertEquals(40, theListOfBooks40.size());
         assertEquals(15, theListOfBooks15.size());
+        assertEquals(0, theListOfBooks40.size());
     }
 
     @Test
