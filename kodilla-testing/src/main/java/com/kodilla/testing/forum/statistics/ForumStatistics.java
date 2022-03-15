@@ -17,11 +17,11 @@ public class ForumStatistics {
         return userList;
     }
 
-    int postsCount(){
+    public int postsCount(){
         return postsNumber;
     }
 
-    int commentsCount(){
+    public int commentsCount(){
         return  commentsNumber;
     }
 
@@ -30,14 +30,16 @@ public class ForumStatistics {
         postsNumber = statistics.postsCount();
         commentsNumber = statistics.commentsCount();
         if(usersNumber > 0){
-            averagePostsOnUser = postsNumber / usersNumber;
-            averageCommentsOnUser = commentsNumber/usersNumber;
+            double temporaryUsersNumber = usersNumber;
+            averagePostsOnUser = postsNumber / temporaryUsersNumber;
+            averageCommentsOnUser = commentsNumber/temporaryUsersNumber;
         } else{
             averagePostsOnUser = 0;
             averageCommentsOnUser = 0;
         }
         if (postsNumber > 0){
-            averageCommentsOnPosts = commentsNumber/postsNumber;
+            double temporaryPostsNumber = postsNumber;
+            averageCommentsOnPosts = commentsNumber/temporaryPostsNumber;
         } else{
             averageCommentsOnPosts = 0;
         }
