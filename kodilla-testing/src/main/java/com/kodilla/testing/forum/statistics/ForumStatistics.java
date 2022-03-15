@@ -30,18 +30,17 @@ public class ForumStatistics {
         postsNumber = statistics.postsCount();
         commentsNumber = statistics.commentsCount();
         if(usersNumber > 0){
-            averagePostsOnUser = postsNumber / usersNumber;}
-        else{
-            averagePostsOnUser = 0;}
-        if(usersNumber > 0){
-            averageCommentsOnUser = commentsNumber/usersNumber;}
-        else{
-            averageCommentsOnUser = 0;}
+            averagePostsOnUser = postsNumber / usersNumber;
+            averageCommentsOnUser = commentsNumber/usersNumber;
+        } else{
+            averagePostsOnUser = 0;
+            averageCommentsOnUser = 0;
+        }
         if (postsNumber > 0){
-            averageCommentsOnPosts = commentsNumber/postsNumber;}
-        else{
-            averageCommentsOnPosts = 0;}
-
+            averageCommentsOnPosts = commentsNumber/postsNumber;
+        } else{
+            averageCommentsOnPosts = 0;
+        }
     }
 
     public void showStatistics(Statistics statistics){
