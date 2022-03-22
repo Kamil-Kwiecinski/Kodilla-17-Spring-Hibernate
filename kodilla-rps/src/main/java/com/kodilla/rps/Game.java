@@ -40,13 +40,13 @@ public class Game {
 
     public int roundForComputer(String playerChoose, String computerChoose) {
         int pointForComputer = 1;
-        if(playerChoose =="Rock" && computerChoose == "Paper") {
+        if(playerChoose.equals("Rock") && computerChoose.equals("Paper")) {
             System.out.println("You choose rock. Computer choose paper. \nWin for commputer.");
             return pointForComputer;
-        } else if(playerChoose =="Scissors" && computerChoose == "Rock") {
+        } else if(playerChoose.equals("Scissors") && computerChoose.equals("Rock")) {
             System.out.println("You choose scissors. Computer choose rock. \nWin for commputer.");
             return pointForComputer;
-        } else if(playerChoose =="Paper" && computerChoose == "Scissors") {
+        } else if(playerChoose.equals("Paper") && computerChoose.equals("Scissors")) {
             System.out.println("You choose paper. Computer choose scissors. \nWin for commputer.");
             return pointForComputer;
         } else
@@ -55,13 +55,13 @@ public class Game {
 
     public int roundForPlayer(String playerChoose, String computerChoose){
         int pointForPlayer = 1;
-        if (playerChoose == "Paper" && computerChoose == "Rock"){
+        if (playerChoose.equals("Paper") && computerChoose.equals("Rock")){
             System.out.println("You choose paper. Computer choose rock. \nWin for you.");
             return pointForPlayer;
-        } else if (playerChoose == "Rock" && computerChoose == "Scissors"){
+        } else if (playerChoose.equals("Rock") && computerChoose.equals("Scissors")){
             System.out.println("You choose rock. Computer choose scissors. \nWin for you.");
             return pointForPlayer;
-        } else if (playerChoose == "Scissors" && computerChoose == "Paper"){
+        } else if (playerChoose.equals("Scissors") && computerChoose.equals("Paper")){
             System.out.println("You choose scissors. Computer choose paper. \nWin for you.");
             return pointForPlayer;
         } else {
@@ -77,25 +77,25 @@ public class Game {
             computerChoose = playerChoose;
             roundDraw(playerChoose, computerChoose);
         } else if (chances == 1) {
-            if (playerChoose == "Rock") {
+            if (playerChoose.equals("Rock")) {
                 computerChoose = "Scissors";
                 roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose == "Paper") {
+            } else if (playerChoose.equals("Paper")) {
                 computerChoose = "Rock";
                 roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose == "Scissors") {
+            } else if (playerChoose.equals("Scissors")) {
                 computerChoose = "Paper";
                 roundForComputer(playerChoose, computerChoose);
             } else {
             }
         }else {
-            if (playerChoose == "Rock") {
+            if (playerChoose.equals("Rock")) {
                 computerChoose = "Paper";
                 roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose == "Paper") {
+            } else if (playerChoose.equals("Paper")) {
                 computerChoose = "Scissors";
                 roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose == "Scissors") {
+            } else if (playerChoose.equals("Scissors")) {
                 computerChoose = "Rock";
                 roundForComputer(playerChoose, computerChoose);
             }

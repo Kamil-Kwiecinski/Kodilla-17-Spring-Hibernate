@@ -44,7 +44,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Are you sure to quit? y/n");
         String yesno = scanner.next();
-        if (yesno == "y") {
+        if (yesno.equals("y")) {
             end = true;
             return end;
         } else {
