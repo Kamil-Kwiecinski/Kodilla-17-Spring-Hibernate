@@ -19,16 +19,20 @@ public class Game {
         return computerChoose.get(number);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Game game = (Game) o;
+
+        return computerChoose != null ? computerChoose.equals(game.computerChoose) : game.computerChoose == null;
+    }
+
     public int roundDraw(String playerChoose, String computerChoose) {
         int draw = 0;
-        if (playerChoose == "Rock" && computerChoose == "Rock") {
-            System.out.println("Rock's draw.");
-            return draw;
-        } else if (playerChoose == "Paper" && computerChoose == "Paper") {
-            System.out.println("Paper's draw.");
-            return draw;
-        } else if (playerChoose == "Scissors" && computerChoose == "Scissors") {
-            System.out.println("Scissors's draw.");
+        if (playerChoose.equals(computerChoose)) {
+            System.out.println(getComputerChoose() + " draw.");
             return draw;
         } else
             return 0;
