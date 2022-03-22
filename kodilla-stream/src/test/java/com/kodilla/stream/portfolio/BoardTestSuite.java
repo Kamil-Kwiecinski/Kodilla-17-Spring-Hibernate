@@ -167,7 +167,5 @@ public class BoardTestSuite {
         double expectedResult = summaryDays/6;
         assertEquals(expectedResult, averageTime, 0.01);
 
-
-
     }
 }
