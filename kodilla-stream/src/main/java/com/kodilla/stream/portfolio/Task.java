@@ -1,7 +1,8 @@
 package com.kodilla.stream.portfolio;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Task {
     private final String title;
@@ -56,8 +57,12 @@ public class Task {
                 '}';
     }
 
-    public int timePeriod(LocalDate startDate, LocalDate endDate){
-        Period diff = Period.between(startDate, endDate);
-        return diff.getDays();
+    public long timePeriod(LocalDate startDate, LocalDate endDate){
+        Date formattedStartDate = java.sql.Date.valueOf(startDate);
+        Date formattedEndDate = java.sql.Date.valueOf(endDate);
+        long diff = formattedEndDate.getTime() - formattedStartDate.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
+
+
 }
