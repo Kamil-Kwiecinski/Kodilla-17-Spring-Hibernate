@@ -40,7 +40,8 @@ public class Menu {
         return numbersOfWinningGames;
     }
 
-    public boolean quitGame(boolean end){
+    public boolean quitGame(){
+        boolean end = false;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Are you sure to quit? y/n");
         String yesno = scanner.next();
@@ -48,7 +49,6 @@ public class Menu {
             end = true;
             return end;
         } else {
-            end = true;
             return end;
         }
     }

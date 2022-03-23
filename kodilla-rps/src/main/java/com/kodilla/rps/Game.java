@@ -15,24 +15,16 @@ public class Game {
 
     public String getComputerChoose() {
         Random random = new Random();
-        int number = random.nextInt(2);
+        int number = 0;
+        number = random.nextInt(2);
         return computerChoose.get(number);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Game game = (Game) o;
-
-        return computerChoose != null ? computerChoose.equals(game.computerChoose) : game.computerChoose == null;
     }
 
     public int roundDraw(String playerChoose, String computerChoose) {
         int draw = 0;
-        if (playerChoose.equals(computerChoose)) {
+        if (equals(playerChoose, computerChoose)) {
             System.out.println(getComputerChoose() + " draw.");
+            System.out.println(playerChoose + " draw.");
             return draw;
         } else
             return 0;

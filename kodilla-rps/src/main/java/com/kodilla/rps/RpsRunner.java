@@ -40,10 +40,14 @@ public class RpsRunner {
                 case "3" -> {
                     String temporaryComputerChoose = game.getComputerChoose();
                     game.roundDraw("Scissors", temporaryComputerChoose);
-                    computerPoints = +computerPoints + game.roundForComputer("Scissors", temporaryComputerChoose);
+                    computerPoints = computerPoints + game.roundForComputer("Scissors", temporaryComputerChoose);
                     playerPoints = playerPoints + game.roundForPlayer("Scissors", temporaryComputerChoose);
                 }
-                case "x" -> menu.quitGame(end);
+                case "x" -> {
+                    end = menu.quitGame();
+                    numberOfRounds = numberOfRounds - 1;
+                }
+
                 case "n" -> {
                     System.out.println("New game.");
                     numberOfRounds = 0;
@@ -56,13 +60,21 @@ public class RpsRunner {
             System.out.println("\nResult: \n" + name + "         Computer"  + "\n" + playerPoints + "        -    " + computerPoints);
 
             if ((playerPoints == menu.getNumbersOfWinningGames()) || (computerPoints == menu.getNumbersOfWinningGames())){
-                System.out.println("\nX  End Game.");
-                System.out.println("N  New Game.");
+                System.out.println("\nX  End Game.\nN  New Game.");
 
                 userChoice = scanner.next();
                 switch (userChoice) {
-                    case "x" -> menu.quitGame(end);
-
+                    case "x" -> {
+                        end = menu.quitGame();
+                        if (!end){
+                            System.out.println("New game.");
+                            numberOfRounds = 0;
+                            playerPoints = 0;
+                            computerPoints = 0;
+                            menu.firstMenu();
+                            menu.secondMenu();
+                        }
+                    }
                     case "n" -> {
                         System.out.println("New game.");
                         numberOfRounds = 0;
