@@ -3,6 +3,7 @@ package com.kodilla.rps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     private List<String> computerChoose = new ArrayList<>();
@@ -16,15 +17,15 @@ public class Game {
     public String getComputerChoose() {
         Random random = new Random();
         int number = 0;
-        number = random.nextInt(2);
+        number = random.nextInt(3);
         return computerChoose.get(number);
     }
 
     public int roundDraw(String playerChoose, String computerChoose) {
         int draw = 0;
-        if (equals(playerChoose, computerChoose)) {
-            System.out.println(getComputerChoose() + " draw.");
-            System.out.println(playerChoose + " draw.");
+        if (playerChoose.equals(computerChoose) == true) {
+            System.out.println("Computer choose " + computerChoose);
+            System.out.println("You choose " + playerChoose + " \nDraw.");
             return draw;
         } else
             return 0;
@@ -61,35 +62,181 @@ public class Game {
         }
     }
 
-    public void hardGame(String playerChoose){
+    public void normalGame() {
+        boolean end = false;
+        int numberOfRounds = 0;
+        int computerPoints = 0;
+        int playerPoints = 0;
+        Menu menu = new Menu("",0);
+        menu.firstMenu();
+        menu.secondMenu();
+        menu.thirdMenu();
+        String name = menu.getName();
+        Game game = new Game();
+        game.addMoves();
+        Scanner scanner = new Scanner(System.in);
+
+        while (!end) {
+            numberOfRounds++;
+            System.out.println("\nRound number: " + numberOfRounds + "\nEnter your choice:");
+            String userChoice = scanner.next();
+            String temporaryComputerChoose = game.getComputerChoose();
+            switch (userChoice) {
+                case "1" -> {
+                    game.roundDraw("Rock", temporaryComputerChoose);
+                    computerPoints = computerPoints + game.roundForComputer("Rock", temporaryComputerChoose);
+                    playerPoints = playerPoints + game.roundForPlayer("Rock", temporaryComputerChoose);
+
+                }
+                case "2" -> {
+                    game.roundDraw("Paper", temporaryComputerChoose);
+                    computerPoints = computerPoints + game.roundForComputer("Paper", temporaryComputerChoose);
+                    playerPoints = playerPoints + game.roundForPlayer("Paper", temporaryComputerChoose);
+                }
+                case "3" -> {
+                    game.roundDraw("Scissors", temporaryComputerChoose);
+                    computerPoints = computerPoints + game.roundForComputer("Scissors", temporaryComputerChoose);
+                    playerPoints = playerPoints + game.roundForPlayer("Scissors", temporaryComputerChoose);
+                }
+                case "x" -> {
+                    end = menu.quitGame();
+                    numberOfRounds = numberOfRounds - 1;
+                }
+                case "n" -> numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+            }
+            System.out.println("\nResult: \n" + name + "         Computer" + "\n" + playerPoints + "        -    " + computerPoints);
+
+            if ((playerPoints == menu.getNumbersOfWinningGames()) || (computerPoints == menu.getNumbersOfWinningGames())) {
+                System.out.println("\nX  End Game.\nN  New Game.");
+
+                userChoice = scanner.next();
+                switch (userChoice) {
+                    case "x" -> {
+                        end = menu.quitGame();
+                        if (!end) {
+                            numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+                        }
+                    }
+                    case "n" -> numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+                }
+            }
+        }
+    }
+
+    public void hardGame(){
+        boolean end = false;
+        int numberOfRounds = 0;
+        int computerPoints = 0;
+        int playerPoints = 0;
+        Menu menu = new Menu("",0);
+        menu.firstMenu();
+        menu.secondMenu();
+        menu.thirdMenu();
+        String name = menu.getName();
+        Game game = new Game();
+        game.addMoves();
+        Scanner scanner = new Scanner(System.in);
+
+        while (!end) {
+            numberOfRounds++;
+            System.out.println("\nRound number: " + numberOfRounds + "\nEnter your choice:");
+            String userChoice = scanner.next();
+            switch (userChoice) {
+                case "1" -> {
+                    if (game.hardRounds("Rock") == 0) {
+
+                    } else if (game.hardRounds("Rock") == 1 ){
+                        playerPoints = playerPoints + 1;
+                    } else if (game.hardRounds("Rock") == 2){
+                        computerPoints = computerPoints + 1;
+                    } else{
+
+                    }
+                }
+                case "2" ->  {
+                    if (game.hardRounds("Paper") == 0) {
+
+                    } else if (game.hardRounds("Paper") == 1 ){
+                        playerPoints = playerPoints + 1;
+                    } else if (game.hardRounds("Paper") == 2){
+                        computerPoints = computerPoints + 1;
+                    } else{
+
+                    }
+                }
+                case "3" ->  {
+                    if (game.hardRounds("Scissors") == 0) {
+
+                    } else if (game.hardRounds("Scissors") == 1 ){
+                        playerPoints = playerPoints + 1;
+                    } else if (game.hardRounds("Scissors") == 2){
+                        computerPoints = computerPoints + 1;
+                    } else{
+
+                    }
+                }
+                case "x" -> {
+                    end = menu.quitGame();
+                    numberOfRounds = numberOfRounds - 1;
+                }
+                case "n" -> numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+            }
+            System.out.println("\nResult: \n" + name + "         Computer" + "\n" + playerPoints + "        -    " + computerPoints);
+
+            if ((playerPoints == menu.getNumbersOfWinningGames()) || (computerPoints == menu.getNumbersOfWinningGames())) {
+                System.out.println("\nX  End Game.\nN  New Game.");
+
+                userChoice = scanner.next();
+                switch (userChoice) {
+                    case "x" -> {
+                        end = menu.quitGame();
+                        if (!end) {
+                            numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+                        }
+                    }
+                    case "n" -> numberOfRounds = playerPoints = computerPoints = menu.newGame(menu);
+                }
+            }
+        }
+    }
+
+    public int hardRounds(String userChoice){
         Random random = new Random();
         String computerChoose;
         int chances = random.nextInt(3);
-        if (chances == 0){
-            computerChoose = playerChoose;
-            roundDraw(playerChoose, computerChoose);
-        } else if (chances == 1) {
-            if (playerChoose.equals("Rock")) {
-                computerChoose = "Scissors";
-                roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose.equals("Paper")) {
-                computerChoose = "Rock";
-                roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose.equals("Scissors")) {
-                computerChoose = "Paper";
-                roundForComputer(playerChoose, computerChoose);
+        System.out.println(chances);
+        if (chances == 1) {
+            computerChoose = userChoice;
+            System.out.println(computerChoose);
+            System.out.println(userChoice);
+            roundDraw(userChoice, computerChoose);
+            return 0;
+        } else if (chances == 2) {
+            if (userChoice.equals("Rock")) {
+                roundForPlayer("Rock", "Scissors");
+                return 1;
+            } else if (userChoice.equals("Paper")) {
+                roundForPlayer("Paper", "Rock");
+                return 1;
+            } else if (userChoice.equals("Scissors")) {
+                roundForPlayer("Scissors", "Paper");
+                return 1;
             } else {
+                return 0;
             }
-        }else {
-            if (playerChoose.equals("Rock")) {
-                computerChoose = "Paper";
-                roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose.equals("Paper")) {
-                computerChoose = "Scissors";
-                roundForComputer(playerChoose, computerChoose);
-            } else if (playerChoose.equals("Scissors")) {
-                computerChoose = "Rock";
-                roundForComputer(playerChoose, computerChoose);
+        } else {
+            if (userChoice.equals("Rock")) {
+                roundForComputer("Rock", "Paper");
+                return 2;
+            } else if (userChoice.equals("Paper")) {
+                roundForComputer("Paper", "Scissors");
+                return 2;
+            } else if (userChoice.equals("Scissors")) {
+                roundForComputer("Scissors", "Rock");
+                return 2;
+            }
+            else {
+                return 0;
             }
         }
 

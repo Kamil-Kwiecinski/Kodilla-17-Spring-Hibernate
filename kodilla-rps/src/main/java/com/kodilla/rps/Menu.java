@@ -18,18 +18,19 @@ public class Menu {
         return name;
     }
 
-    public int secondMenu(){
+    public int secondMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter numbers of win games: ");
         numbersOfWinningGames = scanner.nextInt();
-
+        return numbersOfWinningGames;
+    }
+    public void thirdMenu(){
         System.out.println("\nRemember those keys:");
         System.out.println("1. Rock.");
         System.out.println("2. Paper.");
         System.out.println("3. Scissors.");
         System.out.println("X  End Game.");
         System.out.println("N  New Game.");
-        return numbersOfWinningGames;
     }
 
     public String getName() {
@@ -51,5 +52,14 @@ public class Menu {
         } else {
             return end;
         }
+    }
+
+    public int newGame(Menu menu){
+        System.out.println("New game.");
+        int numberOfRounds = 0;
+        menu.firstMenu();
+        menu.secondMenu();
+        menu.thirdMenu();
+        return numberOfRounds;
     }
 }
