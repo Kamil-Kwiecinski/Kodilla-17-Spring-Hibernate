@@ -13,7 +13,7 @@ public class Menu {
 
     public String firstMenu(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nWelcome in Rock, Paper, Scissors game!\nEnter your name:");
+        System.out.println("\nEnter your name:");
         name = scanner.next();
         return name;
     }

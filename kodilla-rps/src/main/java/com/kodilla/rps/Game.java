@@ -143,36 +143,24 @@ public class Game {
             String userChoice = scanner.next();
             switch (userChoice) {
                 case "1" -> {
-                    if (game.hardRounds("Rock") == 0) {
-
-                    } else if (game.hardRounds("Rock") == 1 ){
-                        playerPoints = playerPoints + 1;
-                    } else if (game.hardRounds("Rock") == 2){
-                        computerPoints = computerPoints + 1;
-                    } else{
-
+                    switch(game.hardRounds("Rock")) {
+                        case 0 -> System.out.print("");
+                        case 1 -> playerPoints++;
+                        case 2 -> computerPoints++;
                     }
                 }
                 case "2" ->  {
-                    if (game.hardRounds("Paper") == 0) {
-
-                    } else if (game.hardRounds("Paper") == 1 ){
-                        playerPoints = playerPoints + 1;
-                    } else if (game.hardRounds("Paper") == 2){
-                        computerPoints = computerPoints + 1;
-                    } else{
-
+                    switch(game.hardRounds("Paper")) {
+                        case 0 -> System.out.print("");
+                        case 1 -> playerPoints++;
+                        case 2 -> computerPoints++;
                     }
                 }
                 case "3" ->  {
-                    if (game.hardRounds("Scissors") == 0) {
-
-                    } else if (game.hardRounds("Scissors") == 1 ){
-                        playerPoints = playerPoints + 1;
-                    } else if (game.hardRounds("Scissors") == 2){
-                        computerPoints = computerPoints + 1;
-                    } else{
-
+                    switch(game.hardRounds("Scissors")) {
+                        case 0 -> System.out.print("");
+                        case 1 -> playerPoints++;
+                        case 2 -> computerPoints++;
                     }
                 }
                 case "x" -> {
@@ -204,34 +192,31 @@ public class Game {
         Random random = new Random();
         String computerChoose;
         int chances = random.nextInt(3);
-        System.out.println(chances);
         if (chances == 1) {
             computerChoose = userChoice;
-            System.out.println(computerChoose);
-            System.out.println(userChoice);
             roundDraw(userChoice, computerChoose);
             return 0;
         } else if (chances == 2) {
-            if (userChoice.equals("Rock")) {
+            if (userChoice.equals("Rock") == true) {
                 roundForPlayer("Rock", "Scissors");
                 return 1;
-            } else if (userChoice.equals("Paper")) {
+            } else if (userChoice.equals("Paper") == true) {
                 roundForPlayer("Paper", "Rock");
                 return 1;
-            } else if (userChoice.equals("Scissors")) {
+            } else if (userChoice.equals("Scissors") == true) {
                 roundForPlayer("Scissors", "Paper");
                 return 1;
             } else {
                 return 0;
             }
         } else {
-            if (userChoice.equals("Rock")) {
+            if (userChoice.equals("Rock") == true) {
                 roundForComputer("Rock", "Paper");
                 return 2;
-            } else if (userChoice.equals("Paper")) {
+            } else if (userChoice.equals("Paper") == true) {
                 roundForComputer("Paper", "Scissors");
                 return 2;
-            } else if (userChoice.equals("Scissors")) {
+            } else if (userChoice.equals("Scissors") == true) {
                 roundForComputer("Scissors", "Rock");
                 return 2;
             }
