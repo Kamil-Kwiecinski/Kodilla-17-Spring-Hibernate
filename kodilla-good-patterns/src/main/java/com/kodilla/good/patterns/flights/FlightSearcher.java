@@ -27,23 +27,26 @@ public class FlightSearcher {
 
     public Set<List<Flight>> transferFlights(String departureAirport, String arrivalAirport) {
         Set<List<Flight>> flightSet = new HashSet<>();
+        List <Flight> transferList = new ArrayList<>();
 
-            airports.getPossibleFlights().stream()
-                    .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
-                    .forEach(flight -> {
-                        List<Flight> n = airports.getPossibleFlights().stream()
-                                .filter(i -> flight.getArrivalAirport().equals(i.getDepartureAirport())
-                                        && i.getArrivalAirport().equals(arrivalAirport))
-                                .collect(Collectors.toList());
+        transferList = airports.getPossibleFlights().stream()
+                .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
+                .collect(Collectors.toList());
 
-                        if (n.size() > 0) {
-                            List<Flight> travelList = new ArrayList<>();
-                            travelList.add(flight);
-                            travelList.addAll(n);
-                            flightSet.add(travelList);
-                        }
-                    });
+        transferList = airports.getPossibleFlights().stream()
+                .filter(flight -> flight.getArrivalAirport().equals(arrivalAirport))
+                .collect(Collectors.toList());
 
+        transferList = airports.getPossibleFlights().stream()
+                .filter(flight -> flight.getArrivalAirport().equals(flight.getDepartureAirport()))
+                .collect(Collectors.toList());
+
+        List<Flight> travelList = new ArrayList<>();
+        List<Flight> flightList = airports.getPossibleFlights().stream()
+                        .collect(Collectors.toList());
+
+        travelList.addAll(flightList);
+        flightSet.add(transferList);
 
         return flightSet;
     }
