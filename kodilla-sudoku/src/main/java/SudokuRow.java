@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SudokuRow {
+
     private final List<SudokuElement> row = new ArrayList<>();
     private int numberRow;
 

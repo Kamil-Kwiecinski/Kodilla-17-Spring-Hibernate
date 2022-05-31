@@ -6,6 +6,7 @@ public class SudokuElement {
     public static int EMPTY = -1;
     private final List<Integer> possibleValues = new ArrayList<>();
     private final Coordinates coordinates;
+    private SudokuBox sudokuBox;
 
     public SudokuElement(int size) {
         this.coordinates = new Coordinates(-1, -1, EMPTY);
@@ -40,5 +41,12 @@ public class SudokuElement {
 
     public int getValue() {
         return coordinates.getValue();
+    }
+
+    public SudokuBox getSudokuBox() {
+        return sudokuBox;
+    }
+    public void setSudokuBox(SudokuBox sudokuBox) {
+        this.sudokuBox = sudokuBox;
     }
 }
