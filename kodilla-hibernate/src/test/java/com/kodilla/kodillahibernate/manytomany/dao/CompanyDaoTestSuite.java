@@ -100,7 +100,7 @@ public class CompanyDaoTestSuite {
         List<Company> companies = companyDao.retriveCompanyByFirstThreeLetters("1Com");
 
         //Then
-//        assertEquals(4, employes.size());
+//        assertEquals(7, employes.size());
 //        assertEquals(1, companies.size());
 
         //CleanUp
